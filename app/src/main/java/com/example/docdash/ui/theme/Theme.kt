@@ -38,7 +38,7 @@ fun DocDashTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        typography = MyTypography,
         shapes = Shapes,
         content = content
     )
