@@ -3,48 +3,55 @@ package com.example.docdash
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.example.docdash.queueTimeCircle.components.QueueTimeBox
 import com.example.docdash.ui.theme.DocDashTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DocDashTheme {
-                // A surface container using the 'background' color from the theme
+            DocDashTheme() {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White)
+                        .paint(
+                            painter = painterResource(id = R.drawable.bg_main),
+                            contentScale = ContentScale.FillWidth
+                        )
+                ) {
+                    Column {
+                        QueueTimeBox()
+                    }
+                }
             }
         }
     }
 }
-
-var themeColor = ThemeColors()
-@Composable
-fun QueueTimeBox(time: String, listPosition: Int) {
-
-    Box() {
-        Canvas(
-            modifier = Modifier
-                .padding(30.dp)
-                .clip(shape = CircleShape)
-                .fillMaxSize()
-                ,
-            onDraw =  {
-                drawCircle(
-                    color = themeColor.primaryColor)
-
-            })
-    }
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    QueueTimeBox(time = "00:14:37", listPosition = 2)
-}
+//
+//@Preview
+//@Composable
+//fun DefaultPreview() {
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(Color.White)
+//            .paint(
+//                painter = painterResource(id = R.drawable.bg_main),
+//                contentScale = ContentScale.FillWidth
+//            )
+//    ) {
+//        Column(
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            QueueTimeBox(time = "00:14:45", listPosition = 2)
+//        }
+//    }
+//}
