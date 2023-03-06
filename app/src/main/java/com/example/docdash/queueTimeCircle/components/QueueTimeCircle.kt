@@ -33,6 +33,7 @@ var themeColor = ThemeColors()
 @Composable
 fun QueueTimeBox(viewModel: ViewModelTimer = androidx.lifecycle.viewmodel.compose.viewModel()) {
 
+    // door deze waarde als state te zien kan een verandering live worden weergeven.
     val time by viewModel.time.observeAsState(Utility.TOTAL_TIME.formatTime())
     val progress by viewModel.progress.observeAsState(1.00F)
     val isPlaying by viewModel.isPlaying.observeAsState(false)
@@ -46,6 +47,7 @@ fun QueueTimeBox(viewModel: ViewModelTimer = androidx.lifecycle.viewmodel.compos
     )
 }
 
+// hierin staat de UI via jetpack compose
 @Composable
 fun QueueTimeBox(
     time: String,
@@ -60,6 +62,8 @@ fun QueueTimeBox(
         animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec,
     )
 
+    // als de countdown niet bezig is kan de countdown worden gestart. Als dat wel kan
+    // wordt de timer oneindig vaak opnieuw aangeroepen. Dat willen we niet.
     if(!isPlaying) {
         viewModel.handleCountDownTimer()
     }

@@ -9,6 +9,9 @@ import com.example.docdash.queueTimeCircle.utils.Utility.formatTime
 
 class ViewModelTimer : ViewModel() {
 
+    //  Door de mutable live data is alles live te veranderen. De tijd wordt dus
+    // op het scherm live afgeteld.
+
     private var queueTimeTimer: CountDownTimer? = null
 
     private val _time = MutableLiveData(Utility.TOTAL_TIME.formatTime())
@@ -23,16 +26,23 @@ class ViewModelTimer : ViewModel() {
     private val _listPosition = MutableLiveData(1)
     var listPosition: LiveData<Int?> = _listPosition
 
+    // functie om de countdown te starten
     fun handleCountDownTimer(){
         startTimer()
     }
 
     private fun startTimer() {
 
+        // is nu aftellen is waar
         _isPlaying.value = true
+
+        // Hier wordt de ingebouwde CountDownTimer aangeroepen.
         queueTimeTimer = object : CountDownTimer(Utility.TOTAL_TIME, 1000) {
 
+            // Dit gebeurt elke tick in de countdown.
             override fun onTick(millisRemaining: Long) {
+
+                // True als er nog 40 minuten over zijn
                 val fortyMinutesLeft: Boolean = millisRemaining <= 2400000
 
                 // Check list position (if every patient took 15 minutes)
@@ -44,6 +54,7 @@ class ViewModelTimer : ViewModel() {
                     else -> 5
                 }
 
+                // totale progressie van 40 minuten naar 0 voor de aftellende cirkel in het design.
                 val progressValue: Float = if (fortyMinutesLeft){
                     millisRemaining.toFloat() / 2400000
                 } else {
@@ -52,6 +63,8 @@ class ViewModelTimer : ViewModel() {
 
                 handleTimerValues(millisRemaining.formatTime(), progressValue, true, listPosition)
             }
+
+            // als de timer klaar is:
             override fun onFinish() {
                 return
             }
