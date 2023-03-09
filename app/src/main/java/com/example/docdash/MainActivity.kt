@@ -1,5 +1,6 @@
 package com.example.docdash
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,7 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import com.example.docdash.notifications.components.AddNotificationBox
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.docdash.notifications.components.SetupNotifications
+import com.example.docdash.notifications.viewmodel.NotificationViewModel
 import com.example.docdash.queueTimeCircle.components.QueueTimeBox
 import com.example.docdash.ui.theme.DocDashTheme
 
@@ -23,27 +29,46 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DocDashTheme {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.White)
-                        .paint(
-                            painter = painterResource(id = R.drawable.bg_main),
-                            contentScale = ContentScale.FillWidth
+                val owner = LocalViewModelStoreOwner.current
+
+                owner?.let {
+                    val viewModel: NotificationViewModel = viewModel(
+                        it,
+                        "NotificationViewModel",
+                        NotificationViewModelFactory(
+                            LocalContext.current.applicationContext as Application
                         )
-                ) {
-                    val context = LocalContext.current
-                    Column {
-                        QueueTimeBox()
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.White)
+                            .paint(
+                                painter = painterResource(id = R.drawable.bg_main),
+                                contentScale = ContentScale.FillWidth
+                            )
+                    ) {
+                        val context = LocalContext.current
+                        Column {
+                            QueueTimeBox()
+                            SetupNotifications(context = context, notificationViewModel = viewModel)
+                        }
+
                     }
-
                 }
-            }
-            AddNotificationBox(context = this, owner = this)
 
+
+            }
         }
+
     }
 
+    class NotificationViewModelFactory(val application: Application) :
+        ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return NotificationViewModel(application) as T
+        }
+    }
 }
 //
 //@Preview
