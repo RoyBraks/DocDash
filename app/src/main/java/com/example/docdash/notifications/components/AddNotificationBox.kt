@@ -2,6 +2,7 @@ package com.example.docdash.notifications.components
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,20 +21,24 @@ fun AddNotificationBox(
 ){
     notificationViewModel = ViewModelProvider(owner).get(NotificationViewModel::class.java)
 
-    OutlinedButton(
-        onClick = {
-            insertDataToDatabase(
-                context,
-                type = 1,
-                title = "Emergency",
-                description = "The hospital has received an emergency. Your waiting time as" +
-                        "increased with 30 minutes",
-                timeAdded = 30,
-            )
+
+    Box() {
+        OutlinedButton(
+            onClick = {
+                insertDataToDatabase(
+                    context,
+                    type = 1,
+                    title = "Emergency",
+                    description = "The hospital has received an emergency. Your waiting time as" +
+                            "increased with 30 minutes",
+                    timeAdded = 30,
+                )
+            }
+        ) {
+            Text(text = "Fire Emergency")
         }
-    ) {
-        Text(text = "Fire Emergency")
     }
+
 }
 
 fun insertDataToDatabase(

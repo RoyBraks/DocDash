@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import com.example.docdash.notifications.components.AddNotificationBox
 import com.example.docdash.queueTimeCircle.components.QueueTimeBox
 import com.example.docdash.ui.theme.DocDashTheme
 
@@ -21,7 +22,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-
             DocDashTheme {
                 Box(
                     modifier = Modifier
@@ -39,8 +39,11 @@ class MainActivity : ComponentActivity() {
 
                 }
             }
+            AddNotificationBox(context = this, owner = this)
+
         }
     }
+
 }
 //
 //@Preview
