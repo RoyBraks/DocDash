@@ -1,4 +1,4 @@
-package com.example.case13
+package com.example.docdash.location
 
 import com.google.android.gms.maps.model.LatLng
 

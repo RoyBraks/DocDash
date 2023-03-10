@@ -1,4 +1,4 @@
-package com.example.case13
+package com.example.docdash.location
 
 import android.Manifest
 import android.app.Activity
