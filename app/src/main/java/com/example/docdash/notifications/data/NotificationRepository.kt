@@ -16,4 +16,9 @@ class NotificationRepository(
             notificationDao.addNotification(notification)
         }
     }
+    fun deleteAll(){
+       coroutineScope.launch(Dispatchers.IO) {
+            notificationDao.deleteAll()
+        }
+    }
 }

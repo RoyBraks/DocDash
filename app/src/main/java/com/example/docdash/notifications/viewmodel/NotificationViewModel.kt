@@ -25,5 +25,9 @@ class NotificationViewModel(
     fun addNotification(notification: Notification) {
         repository.addNotification(notification)
     }
+
+    fun deleteAll(){
+        repository.deleteAll()
+    }
 }
 

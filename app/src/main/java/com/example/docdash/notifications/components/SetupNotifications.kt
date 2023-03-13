@@ -1,7 +1,6 @@
 package com.example.docdash.notifications.components
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,7 +27,6 @@ import com.example.docdash.queueTimeCircle.components.themeColor
 import java.util.*
 
 val themeColors = themeColor
-
 @Composable
 fun SetupNotifications(
     context: Context,
@@ -78,14 +76,7 @@ fun AddNotificationBox(
             color = themeColor.primaryColorDark
         )
 
-        LazyColumn(
-
-        ) {
-            item(
-
-            ) {
-
-            }
+        LazyColumn {
             items(
                 allNotifications
             ) { notification ->
@@ -169,5 +160,4 @@ fun insertDataToDatabase(
 
     val notification = Notification(0, type, title, description, timeAdded)
     notificationViewModel.addNotification(notification)
-    Toast.makeText(context, "Added notification", Toast.LENGTH_LONG).show()
 }

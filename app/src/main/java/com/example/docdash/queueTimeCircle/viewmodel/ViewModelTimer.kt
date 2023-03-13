@@ -1,13 +1,20 @@
 package com.example.docdash.queueTimeCircle.viewmodel
 
+import android.app.Application
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.docdash.notifications.viewmodel.NotificationViewModel
 import com.example.docdash.queueTimeCircle.utils.Utility
 import com.example.docdash.queueTimeCircle.utils.Utility.formatTime
 
+val timeRemaining = MutableLiveData<Long>(0)
 class ViewModelTimer : ViewModel() {
+
+    var emergencyAdded = false
+
+    val notificationViewModel = NotificationViewModel(application = Application())
 
     //  Door de mutable live data is alles live te veranderen. De tijd wordt dus
     // op het scherm live afgeteld.
@@ -63,14 +70,13 @@ class ViewModelTimer : ViewModel() {
 
                 handleTimerValues(millisRemaining.formatTime(), progressValue, true, listPosition)
             }
-
             // als de timer klaar is:
             override fun onFinish() {
+                notificationViewModel.deleteAll()
                 return
             }
         }.start()
     }
-
     private fun handleTimerValues(text: String, progress: Float, isPlaying: Boolean, listPosition: Int?) {
         _time.value = text
         _progress.value = progress

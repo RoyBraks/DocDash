@@ -12,6 +12,9 @@ interface NotificationDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNotification(notification: Notification)
 
+    @Query("DELETE FROM notification_table")
+    fun deleteAll()
+
     @Query("SELECT * FROM notification_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Notification>>
 
