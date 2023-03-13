@@ -45,12 +45,20 @@ class BoxUIelements {
                     .fillMaxWidth()
 
             ) {
+
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(25.dp))
                         .width(width)
                         .height(height)
                         .background(Color.White)
+                        .clickable{
+                            i = if(i ==1){
+                                0
+                            } else{
+                                1
+                            }
+                        }
                     //            .padding(8.dp)
                 ) {
                     Column(
@@ -90,15 +98,15 @@ class BoxUIelements {
                     .padding(16.dp)
                     .offset(x = 150.dp, y = 670.dp)
             ) {
-                Switch(
-                    checked = i == 1,
-                    onCheckedChange = { isChecked ->
-                        i = if (isChecked) 1 else 0
-                    },
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(16.dp)
-                )
+//                Switch(
+//                    checked = i == 1,
+//                    onCheckedChange = { isChecked ->
+//                        i = if (isChecked) 1 else 0
+//                    },
+//                    modifier = Modifier
+//                        .align(Alignment.BottomCenter)
+//                        .padding(16.dp)
+//                )
             }
         }
 
