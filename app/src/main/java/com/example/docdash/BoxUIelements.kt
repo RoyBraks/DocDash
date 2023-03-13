@@ -1,6 +1,7 @@
 package com.example.docdash
 
 import android.content.Intent
+import android.location.Location
 import android.provider.MediaStore
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.result.ActivityResult
@@ -24,12 +25,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.docdash.location.LiveLocation.Companion.checkIfInPolygon
+import com.google.android.gms.maps.model.LatLng
 
 class BoxUIelements {
 
     companion object{
         @Composable
-        fun SmallBox() {
+        fun SmallBox(location: Location?, polygonCoordinates: List<List<LatLng>>) {
+            val inZone = checkIfInPolygon(location, polygonCoordinates)
             var themeColor = ThemeColors()
             val screenWidth = LocalConfiguration.current.screenWidthDp.dp
             val screenHeight = LocalConfiguration.current.screenHeightDp.dp
@@ -52,10 +56,16 @@ class BoxUIelements {
                         .width(width)
                         .height(height)
                         .background(Color.White)
-                        .clickable{
-                            i = if(i ==1){
+                        .clickable {
+//                            i = if (!zone){
+//                                0
+//                            } else{
+//                                1
+//                            }
+                            println(inZone)
+                            i = if (!inZone && i == 1) {
                                 0
-                            } else{
+                            } else {
                                 1
                             }
                         }

@@ -83,17 +83,11 @@ class LiveLocation {
         }
 
         @Composable
-        fun checkIfInPolygon(location: Location?, polygonCoordinates: List<List<LatLng>>): Int {
+        fun checkIfInPolygon(location: Location?, polygonCoordinates: List<List<LatLng>>): Boolean {
 
             var isInPolygon = PolyUtil.containsLocation(location?.let { LatLng(it.latitude, it.longitude) }, polygonCoordinates.flatten(), true)
-            var inZone = 0
 
-            if (isInPolygon) {
-                inZone = 1
-            } else {
-                inZone = 0
-            }
-            return inZone
+            return isInPolygon
         }
     }
 }
