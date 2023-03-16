@@ -16,7 +16,7 @@ class CameraHandler {
             val context = LocalContext.current
             val launcher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    // Handle the camera result here
+                // Camera result can be handled here
                 }
             }
             return launcher

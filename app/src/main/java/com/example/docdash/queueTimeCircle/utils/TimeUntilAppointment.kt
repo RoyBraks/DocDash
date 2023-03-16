@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit
 fun timeUntilAppointment(): Long {
     val date = LocalDateTime.now()
 
-    val dateAppointment = LocalDateTime.parse("2023-03-08T14:30:00")
+    val dateAppointment = LocalDateTime.parse("2023-03-16T01:27:00")
 
     var timeDifference = date.until(dateAppointment, ChronoUnit.MILLIS)
 
