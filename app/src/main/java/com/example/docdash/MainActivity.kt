@@ -5,9 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -26,6 +24,7 @@ import com.example.docdash.notifications.viewmodel.NotificationViewModel
 import com.example.docdash.queueTimeCircle.components.QueueTimeBox
 import com.example.docdash.ui.theme.DocDashTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import com.example.docdash.notifications.permission.Companion.RequestNotificationPermission
 
 class MainActivity : ComponentActivity() {
@@ -55,8 +54,11 @@ class MainActivity : ComponentActivity() {
                     ) {
                         val context = LocalContext.current
                         Column {
+                            Spacer(modifier = Modifier.height(30.dp))
                             QueueTimeBox()
+                            Spacer(modifier = Modifier.height(30.dp))
                             Boxes()
+                            Spacer(modifier = Modifier.height(30.dp))
                             SetupNotifications(context = context, notificationViewModel = viewModel)
                         }
                     }

@@ -41,7 +41,6 @@ class BoxUIelements {
 
             var i by remember { mutableStateOf(0) }
 
-
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
@@ -102,21 +101,6 @@ class BoxUIelements {
                 Spacer(modifier = Modifier.width(22.dp))
                 zoneActivityChecker(i = i, CameraHandler.openCamera())
             }
-            Box(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .offset(x = 150.dp, y = 670.dp)
-            ) {
-//                Switch(
-//                    checked = i == 1,
-//                    onCheckedChange = { isChecked ->
-//                        i = if (isChecked) 1 else 0
-//                    },
-//                    modifier = Modifier
-//                        .align(Alignment.BottomCenter)
-//                        .padding(16.dp)
-//                )
-            }
         }
 
         @Composable
@@ -145,7 +129,7 @@ class BoxUIelements {
                             .padding(start = 12.dp),
                     ) {
                         Text(
-                            text = "SCAN QR",
+                            text = "Speel Trivia",
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp,
                             color = themeColor.primaryColor,
@@ -174,7 +158,7 @@ class BoxUIelements {
                             .padding(start = 12.dp),
                     ) {
                         Text(
-                            text = "SCAN QR",
+                            text = "Speel Trivia",
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp,
                             color = themeColor.primaryColor,

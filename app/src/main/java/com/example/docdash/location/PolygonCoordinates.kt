@@ -4,12 +4,13 @@ import com.google.android.gms.maps.model.LatLng
 
 class PolygonCoordinates {
     companion object{
+        // Coordinates of a GP in Oisterwijk
         val polygonCoordinates = listOf(
             listOf(
-                LatLng(51.575422, 5.179338),
-                LatLng(51.57495862793142, 5.179536504346579),
-                LatLng(51.57524012340703, 5.181807572256253),
-                LatLng(51.57586654370197, 5.181699122384162)
+                LatLng(51.574318867112304, 5.181394484701414),
+                LatLng(51.574332743885996, 5.181762895269838),
+                LatLng(51.57416126631373, 5.181405648658033),
+                LatLng(51.5741652311204, 5.181778843779294)
             )
         )
     }
